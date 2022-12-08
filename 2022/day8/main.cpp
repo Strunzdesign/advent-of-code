@@ -135,6 +135,6 @@ void Play(std::string_view a_FileName) {
 }
 
 int main(int argc, char **argv) {
-    Play("input-example.txt"); // Wrong: 16, too low
-    Play("input.txt"); // Wrong: 404, too low. 1681 too high
+    Play("input-example.txt");
+    Play("input.txt");
 }
