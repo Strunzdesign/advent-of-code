@@ -20,7 +20,6 @@ void CalculateVisibility(T_Forest& a_Forest) {
     const auto l_ForestHeight = a_Forest.size();
     const auto l_ForestWidth  = a_Forest[0].size();    
     const auto l_CheckTree = [&a_Forest, l_ForestHeight, l_ForestWidth](std::size_t a_Row, std::size_t a_Column, std::size_t a_HighestTree) {
-        // Special case: first
         auto& [l_CurrentHeight, l_bCurrentVisibility, l_CurrentScenicScore] = a_Forest[a_Row][a_Column];
         if ((a_Column == 0) || (a_Column == (l_ForestWidth - 1)) || (a_Row == 0) || (a_Row == (l_ForestHeight - 1)) || (a_HighestTree < l_CurrentHeight)) {
             l_bCurrentVisibility = true;
