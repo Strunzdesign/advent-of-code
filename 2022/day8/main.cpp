@@ -49,7 +49,7 @@ void CalculateVisibility(T_Forest& a_Forest) {
     } // for
 }
 
-void CalculateScenicView(T_Forest& a_Forest) {
+void CalculateScenicScore(T_Forest& a_Forest) {
     // Check each tree of the forest
     const auto l_ForestHeight = a_Forest.size();
     const auto l_ForestWidth  = a_Forest[0].size();    
@@ -113,9 +113,9 @@ void Play(std::string_view a_FileName) {
     } // while
     
     CalculateVisibility(l_Forest);
-    CalculateScenicView(l_Forest);
+    CalculateScenicScore(l_Forest);
 
-    // Count all invisible trees and check best scenic score
+    // Count all visible trees and check best scenic score
     std::size_t l_Trees = 0;
     std::size_t l_VisibleTrees = 0;
     std::size_t l_BestScenicScore = 0;
