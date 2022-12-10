@@ -70,8 +70,8 @@ private:
 };
 
 void Play(std::string_view a_FileName) {
-    // Read the movements
-    std::cout << std::endl << "Checking movement information from file \"" << a_FileName << "\"" << std::endl;
+    // Read the CPU instructions
+    std::cout << std::endl << "Feeding CPU instructions from file \"" << a_FileName << "\" to CPU" << std::endl;
     std::ifstream l_InputStream { std::string { a_FileName } };
     std::string l_Line;
 
