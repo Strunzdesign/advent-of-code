@@ -111,5 +111,5 @@ void Play(std::string_view a_FileName) {
 int main(int argc, char **argv) {
     Play("input-example.txt");
     Play("input-example2.txt");
-    Play("input.txt"); // Wrong B: 2396 too high
+    Play("input.txt");
 }
