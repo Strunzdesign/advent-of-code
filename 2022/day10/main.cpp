@@ -83,7 +83,6 @@ void Play(std::string_view a_FileName) {
     } };
     
     while (std::getline(l_InputStream, l_Line)) {
-        // Parse one movement, but then only move the head of rope one step at a time
         l_CPU.Process(l_Line);  
     } // while
     
