@@ -136,7 +136,7 @@ void Monkey::InspectItems(const std::function<std::uint64_t(std::uint64_t)>& a_W
 
 void Play(std::string_view a_FileName) {
     // Read the monkey specs
-    std::cout << std::endl << "Reading monkey specifications from file \"" << a_FileName << std::endl;
+    std::cout << std::endl << "Reading monkey specifications from file \"" << a_FileName << "\"" << std::endl;
     std::ifstream l_InputStream { std::string { a_FileName } };
     std::string l_Line;
 
