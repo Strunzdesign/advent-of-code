@@ -19,9 +19,9 @@
 class Terrain {
 public:
     // Types
-    using Coordinate = std::pair<std::uint32_t, std::uint32_t>;
-    using HeightEntry = std::pair<std::uint8_t, std::optional<std::uint32_t>>;
-    using CoordinateToTest = std::tuple<std::uint32_t, std::uint32_t, std::uint8_t>;
+    using Coordinate = std::pair<std::uint32_t, std::uint32_t>; // Y, X
+    using HeightEntry = std::pair<std::uint8_t, std::optional<std::uint32_t>>; // height, steps (if visited)
+    using CoordinateToTest = std::tuple<std::uint32_t, std::uint32_t, std::uint8_t>; // Y, X, height from originating neighbor
     
     void AddLine(std::string_view a_Line) {
         const auto l_Y = m_HeightMap.size();
@@ -45,9 +45,8 @@ public:
         // Go from the final back to the start
         assert(m_FinalCoords.has_value());
         const auto& [l_Y, l_X] = m_FinalCoords.value();
-        std::vector<CoordinateToTest> l_Coordinates;
-        l_Coordinates.push_back(CoordinateToTest { l_Y, l_X, std::uint8_t { 26 } } );
-        Trace(l_Coordinates, 0); // Recursive, start with step 0
+        std::vector<CoordinateToTest> l_CoordinatesToTest { CoordinateToTest { l_Y, l_X, 26 } };
+        Trace(l_CoordinatesToTest, 0); // Recursive, start with step 0
     }
     
     [[nodiscard]] auto GetStepsAtDestinationA() const noexcept {
@@ -63,11 +62,11 @@ public:
     }
     
 private:
-    void Trace(const std::vector<CoordinateToTest>& a_Coordinates, std::uint32_t a_StepNbr) {
+    void Trace(const std::vector<CoordinateToTest>& a_CoordinatesToTest, std::uint32_t a_StepNbr) {
         std::vector<CoordinateToTest> l_NextCoordinates;
-        for (const auto& l_Coordinate: a_Coordinates) {
+        for (const auto& l_CoordinateToTest: a_CoordinatesToTest) {
             // Test this coordinate
-            const auto& [l_TestY, l_TestX, l_FromHeight] = l_Coordinate;
+            const auto& [l_TestY, l_TestX, l_FromHeight] = l_CoordinateToTest;
             try {
                 auto& [l_Height, l_oStepNbr] = m_HeightMap.at(l_TestY).at(l_TestX);
                 if (!l_oStepNbr.has_value()) {
